@@ -75,6 +75,20 @@ public class Localizer
 			UpdatePlaceholder();
 		}
 	}
+	
+	
+	public static void TranslatedString (string key, string phrase) 
+	{
+		if (!PlaceholderProcessors.ContainsKey(key))
+		{
+			PlaceholderProcessors[key] = new Dictionary<string, Func<string>>();
+		}
+		void UpdatePlaceholder()
+		{
+			PlaceholderProcessors[key][key] = phrase;
+			UpdatePlaceholderText(Localization.instance, key);
+		}
+	}
 
 	public static void Load() => LoadLocalization(Localization.instance, Localization.instance.GetSelectedLanguage());
 
